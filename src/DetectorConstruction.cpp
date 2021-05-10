@@ -45,31 +45,41 @@ void DetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   
-   G4NistManager* man = G4NistManager::Instance();
+   G4NistManager* nist = G4NistManager::Instance();
 
-   G4Material* default_mat = man->FindOrBuildMaterial("Air");
-   G4Material* box_mat = man->FindOrBuildMaterial("Water");
+   G4Material* world_mat = nist->FindOrBuildMaterial("G4_AIR");
+   G4Material* tube_mat = nist->FindOrBuildMaterial("G4_STEEL");
 
 
    G4double worldSize = 1 * m;
 
    G4Box* worldSol = new G4Box("World", worldSize, worldSize, worldSize);
-   G4LogicalVolume* worldLog = new G4LogicalVolume(worldSol, default_mat, "World");
+   G4LogicalVolume* worldLog = new G4LogicalVolume(worldSol, world_mat, "World");
    G4VPhysicalVolume* worldPhys = new G4PVPlacement(0, G4ThreeVector(), worldLog, "World", 0, false, 0);
 
-   G4double Box_x = 0.5*m;
-   G4double Box_y = 0.5*m;
-   G4double Box_z = 0.5*m;   
 
-   G4Tubs* detTubeSol = new G4Tubs("geigerTube", 10*mm, 12*mm, 7.5*cm, 0, 360*deg);
-   G4LogicalVolume* detTubeLog = new G4LogicalVolume(detTubeSol, default_mat, "geigerTube");
+   G4double detLength = 197.*mm;
+
+   G4Tubs* detTubeSol = new G4Tubs("geigerTube", 10*mm, 12*mm, detLength/2., 0, 360*deg);
+   G4LogicalVolume* detTubeLog = new G4LogicalVolume(detTubeSol, tube_mat, "geigerTube");
    G4VPhysicalVolume* detTubePhys = new G4PVPlacement(0,                 
                                                       G4ThreeVector(), 
                                                       detTubeLog,      
                                                       "geigerTube",      
                                                       worldLog,         
                                                       false,             
-                                                      0);               
+                                                      0);
+
+
+   G4Tubs* anodeTubeSol = new G4Tubs("anodeTube", 0*mm, 1*mm, detLength/2., 0, 360*deg);
+   G4LogicalVolume* anodeTubeLog = new G4LogicalVolume(anodeTubeSol, tube_mat, "anodeTube");
+   G4VPhysicalVolume* anodeTubePhys = new G4PVPlacement(0,                 
+                                                      G4ThreeVector(), 
+                                                      anodeTubeLog,      
+                                                      "anodeTube",      
+                                                      worldLog,         
+                                                      false,             
+                                                      0);                
    
    return worldPhys;
 }
