@@ -1,3 +1,7 @@
+########################################################## 
+# author: vlad orlov        May 2021                     #
+##########################################################
+
 # Setup Project
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 project(Geiger)
