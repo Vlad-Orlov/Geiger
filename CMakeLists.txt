@@ -24,11 +24,8 @@ target_link_libraries(Geiger ${Geant4_LIBRARIES})
 
 # if you want to copy scripts over uncomment this section
 set(Geiger_SCRIPTS
-  Geiger.in
-  Geiger.out
   init_vis.mac
   run1.mac
-  run2.mac
   vis.mac
   )
 
