@@ -48,19 +48,30 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
    G4NistManager* nist = G4NistManager::Instance();
 
    G4Material* world_mat = nist->FindOrBuildMaterial("G4_AIR");
-   G4Material* tube_mat = nist->FindOrBuildMaterial("G4_STEEL");
+   G4Material* gas_mat = nist->FindOrBuildMaterial("G4_Ar");
+   G4Material* tube_mat = nist->FindOrBuildMaterial("G4_STAINLESS-STEEL");
 
 
-   G4double worldSize = 1 * m;
+   G4double worldSize = 20*cm;
+   G4double detLength = 197.*mm;
+   G4double detInnerRad = 10*mm;
+   G4double detWallThick = 1*mm;
+
 
    G4Box* worldSol = new G4Box("World", worldSize, worldSize, worldSize);
    G4LogicalVolume* worldLog = new G4LogicalVolume(worldSol, world_mat, "World");
-   G4VPhysicalVolume* worldPhys = new G4PVPlacement(0, G4ThreeVector(), worldLog, "World", 0, false, 0);
+   G4VPhysicalVolume* worldPhys = new G4PVPlacement(0,
+                                                    G4ThreeVector(),
+                                                    worldLog,
+                                                    "World",
+                                                    0,
+                                                    false,
+                                                    0);
 
 
-   G4double detLength = 197.*mm;
 
-   G4Tubs* detTubeSol = new G4Tubs("geigerTube", 10*mm, 12*mm, detLength/2., 0, 360*deg);
+   G4Tubs* detTubeSol = new G4Tubs("geigerTube", detInnerRad, detInnerRad+detWallThick, 
+                                    detLength/2., 0, 360*deg);
    G4LogicalVolume* detTubeLog = new G4LogicalVolume(detTubeSol, tube_mat, "geigerTube");
    G4VPhysicalVolume* detTubePhys = new G4PVPlacement(0,                 
                                                       G4ThreeVector(), 
@@ -70,16 +81,25 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                       false,             
                                                       0);
 
+   G4Tubs* gasSol = new G4Tubs("gas", 0., detInnerRad, detLength/2., 0, 360*deg);
+   G4LogicalVolume* gasLog = new G4LogicalVolume(gasSol, gas_mat, "gas");
+   G4VPhysicalVolume* gasPhys = new G4PVPlacement(0,                 
+                                                  G4ThreeVector(), 
+                                                  gasLog,      
+                                                  "gas",      
+                                                  worldLog,         
+                                                  false,             
+                                                  0);
 
    G4Tubs* anodeTubeSol = new G4Tubs("anodeTube", 0*mm, 1*mm, detLength/2., 0, 360*deg);
    G4LogicalVolume* anodeTubeLog = new G4LogicalVolume(anodeTubeSol, tube_mat, "anodeTube");
    G4VPhysicalVolume* anodeTubePhys = new G4PVPlacement(0,                 
-                                                      G4ThreeVector(), 
-                                                      anodeTubeLog,      
-                                                      "anodeTube",      
-                                                      worldLog,         
-                                                      false,             
-                                                      0);                
+                                                        G4ThreeVector(), 
+                                                        anodeTubeLog,      
+                                                        "anodeTube",      
+                                                        gasLog,         
+                                                        false,             
+                                                        0);                
    
    return worldPhys;
 }
