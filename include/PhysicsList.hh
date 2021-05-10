@@ -1,6 +1,8 @@
-/* Our Physics List header */
-#ifndef PhysicsList_h
-#define PhysicsList_h 1
+/*########################################################*\ 
+|* author: vlad orlov        May 2021                     *|
+\*########################################################*/
+
+#pragma once
 
 #include "G4VModularPhysicsList.hh"
 
@@ -13,4 +15,3 @@ class PhysicsList : public G4VModularPhysicsList
     virtual void SetCuts();
 
 };
-#endif

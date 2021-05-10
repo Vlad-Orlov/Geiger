@@ -1,6 +1,8 @@
-/* Need our required Detector construction header */
-#ifndef DetectorConstruction_h
-#define DetectorConstruction_h 1
+/*########################################################*\ 
+|* author: vlad orlov        May 2021                     *|
+\*########################################################*/
+
+#pragma once
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
@@ -19,4 +21,3 @@ class DetectorConstruction : public G4VUserDetectorConstruction
    private:
       void DefineMaterials();
 };
-#endif
