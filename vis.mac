@@ -57,7 +57,7 @@
 /vis/scene/endOfEventAction accumulate
 #
 
-/vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
+#/vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
 
 # To get nice view
 # Make the "World" box invisible
