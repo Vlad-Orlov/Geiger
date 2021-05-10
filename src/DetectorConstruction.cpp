@@ -1,8 +1,6 @@
-/******* We will create the most basics of a detector construction file  ********/
-/*** 
- * To do this we will create a world box and place another box inside it and fill it. We need 
- * to create the logical volume, use the solid, and add other attributes (like composition)
- * ***/
+/*########################################################*\ 
+|* author: vlad orlov        May 2021                     *|
+\*########################################################*/
 
 #include "DetectorConstruction.hh"
 #include "G4NistManager.hh"         

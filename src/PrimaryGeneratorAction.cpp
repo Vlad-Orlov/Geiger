@@ -1,7 +1,6 @@
-/**
- * Remember to use the header file in the /include folder
- * This is the third REQUIRED file (Detector Const, and Phys list)
- */
+/*########################################################*\ 
+|* author: vlad orlov        May 2021                     *|
+\*########################################################*/
 
 #include "PrimaryGeneratorAction.hh"
 

@@ -1,4 +1,7 @@
-/* Second REQUIRED file (Detector Construction, Primary Generator Action) */
+/*########################################################*\ 
+|* author: vlad orlov        May 2021                     *|
+\*########################################################*/
+
 #include "PhysicsList.hh"
 
 // Our basic physics packages needed to do simple decay
