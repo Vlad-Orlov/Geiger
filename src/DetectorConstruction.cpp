@@ -54,7 +54,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
    G4double worldSize = 20*cm;
    G4double detLength = 197.*mm;
-   G4double detInnerRad = 10*mm;
+   G4double detInnerRad = 11*mm;
    G4double detWallThick = 1*mm;
 
 
@@ -81,6 +81,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                       false,             
                                                       0);
 
+
    G4Tubs* gasSol = new G4Tubs("gas", 0., detInnerRad, detLength/2., 0, 360*deg);
    G4LogicalVolume* gasLog = new G4LogicalVolume(gasSol, gas_mat, "gas");
    G4VPhysicalVolume* gasPhys = new G4PVPlacement(0,                 
@@ -90,6 +91,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                                                   worldLog,         
                                                   false,             
                                                   0);
+
 
    G4Tubs* anodeTubeSol = new G4Tubs("anodeTube", 0*mm, 1*mm, detLength/2., 0, 360*deg);
    G4LogicalVolume* anodeTubeLog = new G4LogicalVolume(anodeTubeSol, tube_mat, "anodeTube");
