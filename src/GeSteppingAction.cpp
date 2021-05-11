@@ -32,7 +32,6 @@ GeSteppingAction::~GeSteppingAction()
 
 void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
 {
-    G4cout << "Making a step!" << G4endl;
     G4int eventNumber = G4RunManager::GetRunManager()->
                                               GetCurrentEvent()->GetEventID();
 
@@ -56,12 +55,8 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
 
 
     G4int trackid = track -> GetTrackID();
-    G4cout << "Getting a track ID!" << G4endl;
 
-    // G4int process = 0;
-    // G4String processname = track->GetCreatorProcess()->GetProcessName();
-        
-    G4cout << "Getting postvolume~" << G4endl;
+
     G4VPhysicalVolume* postvolumephys = NULL;
     postvolumephys = aStep->GetPostStepPoint()->GetPhysicalVolume();
     if(!postvolumephys) return;
@@ -74,8 +69,6 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
     prevolumephys = aStep->GetPreStepPoint()->GetPhysicalVolume();
     G4String prephysvolname = prevolumephys->GetName();
     
-      
-    G4cout << "Entering gas volume!" << G4endl;
 
     if(postphysvolname == "gas")
     {
