@@ -8,7 +8,6 @@
 #include "G4ParticleTable.hh"
 #include "G4ParticleGun.hh"
 #include "G4ThreeVector.hh"
-#include "G4Geantino.hh"
 #include "globals.hh"
 #include "G4SystemOfUnits.hh"
 
@@ -20,9 +19,8 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 
   // default particle kinematic
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-  G4String particleName;
-  G4ParticleDefinition* particle
-    = particleTable->FindParticle(particleName="gamma");
+  G4String particleName = "gamma";
+  G4ParticleDefinition* particle = particleTable->FindParticle(particleName);
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticlePosition(G4ThreeVector(0.,5.*cm,0.));
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
