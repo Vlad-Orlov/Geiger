@@ -56,7 +56,7 @@
 #/vis/modeling/trajectories/drawByParticleID-0/set e+ yellow
 #
 # To superimpose all of the events from a given run:
-/vis/scene/endOfEventAction accumulate
+/vis/scene/endOfEventAction accumulate -1
 #
 
 #/vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
@@ -67,10 +67,10 @@
 /vis/geometry/set/visibility gas 0 false
 
 /vis/set/touchable World 0 geigerTube 0
-/vis/touchable/set/colour 0.12549 0.290196 0.529412 .3
+/vis/touchable/set/colour 0.12549 0.290196 0.529412 .7
 
 /vis/set/touchable World 0 gas 0 anodeTube 0
-/vis/touchable/set/colour 0.643137 0 0 .3
+/vis/touchable/set/colour 0.643137 0 0 .7
 
 # Re-establish auto refreshing and verbosity:
 /vis/viewer/set/autoRefresh true
