@@ -4,6 +4,7 @@ through emission of secondary electrons. Efficiency of such a can be studied.
 
 Geometry setup:
 
+```
                                 o Cs 137 source
                                /
             661.7 keV gamma   / 
@@ -16,3 +17,4 @@ Geometry setup:
 |                       |                             |
 |                       | e-                          |
 |_______________________|_____________________________|
+```
