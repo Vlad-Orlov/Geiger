@@ -2,13 +2,13 @@
 |* author: vlad orlov        May 2021                     *|
 \*########################################################*/
 
-#include "PhysicsList.hh"
+#include "GePhysicsList.hh"
 
 #include "G4DecayPhysics.hh"
 #include "G4RadioactiveDecayPhysics.hh"
 #include "G4EmStandardPhysics.hh"
 
-PhysicsList::PhysicsList()
+GePhysicsList::GePhysicsList()
   : G4VModularPhysicsList()
 {
   RegisterPhysics(new G4DecayPhysics());
@@ -17,10 +17,10 @@ PhysicsList::PhysicsList()
 }
 
 
-PhysicsList::~PhysicsList(){}
+GePhysicsList::~GePhysicsList(){}
 
 
-void PhysicsList::SetCuts()
+void GePhysicsList::SetCuts()
 {
   G4VUserPhysicsList::SetCuts();
 }

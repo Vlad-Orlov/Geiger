@@ -6,11 +6,11 @@
 
 #include "G4VModularPhysicsList.hh"
 
-class PhysicsList : public G4VModularPhysicsList
+class GePhysicsList : public G4VModularPhysicsList
 {
   public:
-    PhysicsList();
-    ~PhysicsList();
+    GePhysicsList();
+    ~GePhysicsList();
     
     virtual void SetCuts();
 

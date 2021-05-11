@@ -9,11 +9,11 @@
 class G4ParticleGun;
 class G4Event;
 
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
+class GePrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
   public:
-    PrimaryGeneratorAction();
-    virtual ~PrimaryGeneratorAction();
+    GePrimaryGeneratorAction();
+    virtual ~GePrimaryGeneratorAction();
     virtual void GeneratePrimaries(G4Event*);
 
     const G4ParticleGun* GetParticleGun() const { return fParticleGun;}

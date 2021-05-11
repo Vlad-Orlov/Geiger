@@ -2,7 +2,7 @@ This simulation demonstrates how a simple Geiger tube counter registers gamma ra
 secondary electrons. Efficiency of such a detector can be studied.
 
 
-Geometry setup:
+###Geometry setup:
 
 ```
                                                      o Cs 137 source
@@ -11,7 +11,7 @@ Geometry setup:
                                                   /
                       ___steel___________________/_________________________  Cathode
                      |                          / \                        |
-                     |    Ar                e- /   \ e-                    |
+                     |   Ar                 e- /   \ e-                    |
                      |                        /     \                      |
                      |== steel ============================================| Anode
                      |                       |                             |

@@ -1,28 +1,44 @@
+/*########################################################*\ 
+|* author: vlad orlov        May 2021                     *|
+\*########################################################*/
+
 #include "G4RunManagerFactory.hh"
 #include "G4UImanager.hh"
-#include "G4RunManager.hh"
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
 
-#include "DetectorConstruction.hh"
-#include "PhysicsList.hh"
-#include "PrimaryGeneratorAction.hh"
+#include "GeDetectorConstruction.hh"
+#include "GeActionInitialization.hh"
+#include "GePhysicsList.hh"
+#include "GePrimaryGeneratorAction.hh"
 
 int main(int argc, char** argv)
 {
 
-	G4UIExecutive* ui = 0;
+	G4int nThreads = 5;
+
+  	G4long myseed = 345354;
+
+
+	G4UIExecutive* ui = nullptr;
 	if ( argc == 1 ) {
-	ui = new G4UIExecutive(argc, argv);
+		ui = new G4UIExecutive(argc, argv);
 	}
 
-    auto* runManager = new G4RunManager;
-    // G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
+	auto runManager = G4RunManagerFactory::CreateRunManager();
 
-    runManager->SetUserInitialization(new DetectorConstruction);
-    runManager->SetUserInitialization(new PhysicsList);
-    runManager->SetUserAction(new PrimaryGeneratorAction);
+	#ifdef G4MULTITHREADED
+	if(nThreads > 0) runManager->SetNumberOfThreads(nThreads);
+	#endif
 
+	// Seed the random number generator manually
+	G4Random::setTheSeed(myseed);
+
+    runManager->SetUserInitialization(new GeDetectorConstruction);
+    runManager->SetUserInitialization(new GePhysicsList);
+	runManager->SetUserInitialization(new GeActionInitialization());
+    // runManager->SetUserAction(new GePrimaryGeneratorAction);
+	runManager->Initialize();
 
     G4VisManager* visManager = new G4VisExecutive;
     visManager->Initialize();

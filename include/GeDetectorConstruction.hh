@@ -11,11 +11,11 @@
 class G4VPhysicalVolume;
 class G4LogicalVolume;
 
-class DetectorConstruction : public G4VUserDetectorConstruction
+class GeDetectorConstruction : public G4VUserDetectorConstruction
 {
    public:
-      DetectorConstruction();
-      virtual ~DetectorConstruction();
+      GeDetectorConstruction();
+      virtual ~GeDetectorConstruction();
       virtual G4VPhysicalVolume* Construct();
 
    private:

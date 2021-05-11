@@ -2,7 +2,7 @@
 |* author: vlad orlov        May 2021                     *|
 \*########################################################*/
 
-#include "DetectorConstruction.hh"
+#include "GeDetectorConstruction.hh"
 #include "G4NistManager.hh"         
 #include "G4Box.hh"
 #include "G4Tubs.hh"                
@@ -13,15 +13,15 @@
 #include "G4PhysicalConstants.hh"   
 #include "G4SystemOfUnits.hh"
 
-DetectorConstruction::DetectorConstruction() : G4VUserDetectorConstruction() 
+GeDetectorConstruction::GeDetectorConstruction() : G4VUserDetectorConstruction() 
 {
    DefineMaterials(); 
 }
 
-DetectorConstruction::~DetectorConstruction(){} 
+GeDetectorConstruction::~GeDetectorConstruction(){} 
 
 
-void DetectorConstruction::DefineMaterials()
+void GeDetectorConstruction::DefineMaterials()
 {
    G4NistManager* man = G4NistManager::Instance(); 
    G4bool isotopes = false;
@@ -42,7 +42,7 @@ void DetectorConstruction::DefineMaterials()
 }
 
 
-G4VPhysicalVolume* DetectorConstruction::Construct()
+G4VPhysicalVolume* GeDetectorConstruction::Construct()
 {
   
    G4NistManager* nist = G4NistManager::Instance();

@@ -2,7 +2,7 @@
 |* author: vlad orlov        May 2021                     *|
 \*########################################################*/
 
-#include "PrimaryGeneratorAction.hh"
+#include "GePrimaryGeneratorAction.hh"
 
 #include "G4Event.hh"
 #include "G4ParticleTable.hh"
@@ -12,7 +12,7 @@
 #include "G4SystemOfUnits.hh"
 
 
-PrimaryGeneratorAction::PrimaryGeneratorAction()
+GePrimaryGeneratorAction::GePrimaryGeneratorAction()
 {
   G4int n_particle = 1;
   fParticleGun = new G4ParticleGun(n_particle);
@@ -28,13 +28,13 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 }
 
 
-PrimaryGeneratorAction::~PrimaryGeneratorAction()
+GePrimaryGeneratorAction::~GePrimaryGeneratorAction()
 {
    delete fParticleGun;
 }
 
 // Primary event
-void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
+void GePrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
    fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,-1.0,0.));
  
