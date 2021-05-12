@@ -70,23 +70,84 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
     G4String prephysvolname = prevolumephys->GetName();
     
 
-    if(postphysvolname == "gas")
-    {
-        analysisManager->FillNtupleDColumn(0,0, 
-                                    aStep->GetPostStepPoint()->GetPosition().getX());
-        analysisManager->FillNtupleDColumn(0,1, 
-                                    aStep->GetPostStepPoint()->GetPosition().getY());
-        analysisManager->FillNtupleDColumn(0,2, 
-                                    aStep->GetPostStepPoint()->GetPosition().getZ());
+    // Only info about electrons gets recorded
+    if( ParticleName != "e-") return;
 
+
+    // Electrons that are born in cathode and go into the gas volume
+    if(prephysvolname == "geigerTube" && postphysvolname == "gas")
+    {   
+        G4double x, y, z, rho, phi, u, E;
+        x = aStep->GetPostStepPoint()->GetPosition().getX();
+        y = aStep->GetPostStepPoint()->GetPosition().getY();
+        z = aStep->GetPostStepPoint()->GetPosition().getZ();
+        rho = sqrt(x*x + y*y);
+        phi = aStep->GetPostStepPoint()->GetPosition().getPhi();
+        u = 11.*phi*mm;
+        E = track->GetKineticEnergy();
+
+        analysisManager->FillNtupleDColumn(0,0, x/mm);
+        analysisManager->FillNtupleDColumn(0,1, y/mm);
+        analysisManager->FillNtupleDColumn(0,2, z/mm);
+        analysisManager->FillNtupleDColumn(0,3, rho/mm);
+        analysisManager->FillNtupleDColumn(0,4, phi/deg);
+        analysisManager->FillNtupleDColumn(0,5, u/mm);
+        analysisManager->FillNtupleDColumn(0,6, E/keV);
 
         analysisManager->AddNtupleRow(0);
         track->SetTrackStatus(fStopAndKill);
     }
 
+    // Electrons that are born in anode wire and go to the gas volume
+    if(prephysvolname == "anodeTube" && postphysvolname == "gas")
+    {   
+        G4double x, y, z, rho, phi, u, E;
+        x = aStep->GetPostStepPoint()->GetPosition().getX();
+        y = aStep->GetPostStepPoint()->GetPosition().getY();
+        z = aStep->GetPostStepPoint()->GetPosition().getZ();
+        rho = sqrt(x*x + y*y);
+        phi = aStep->GetPostStepPoint()->GetPosition().getPhi();
+        u = 1.*phi*mm;
+        E = track->GetKineticEnergy();
+
+        analysisManager->FillNtupleDColumn(1,0, x/mm);
+        analysisManager->FillNtupleDColumn(1,1, y/mm);
+        analysisManager->FillNtupleDColumn(1,2, z/mm);
+        analysisManager->FillNtupleDColumn(1,3, rho/mm);
+        analysisManager->FillNtupleDColumn(1,4, phi/deg);
+        analysisManager->FillNtupleDColumn(1,5, u/mm);
+        analysisManager->FillNtupleDColumn(1,6, E/keV);
+
+        analysisManager->AddNtupleRow(1);
+        track->SetTrackStatus(fStopAndKill);
+    }
+
+    // Electrons that are born in gas volume itself
+    if(prephysvolname == "gas" && postphysvolname == "gas")
+    {   
+        G4double x, y, z, rho, phi, u, E;
+        x = aStep->GetPostStepPoint()->GetPosition().getX();
+        y = aStep->GetPostStepPoint()->GetPosition().getY();
+        z = aStep->GetPostStepPoint()->GetPosition().getZ();
+        rho = sqrt(x*x + y*y);
+        phi = aStep->GetPostStepPoint()->GetPosition().getPhi();
+        u = 11.*phi*mm;
+        E = track->GetKineticEnergy();
+
+        analysisManager->FillNtupleDColumn(2,0, x/mm);
+        analysisManager->FillNtupleDColumn(2,1, y/mm);
+        analysisManager->FillNtupleDColumn(2,2, z/mm);
+        analysisManager->FillNtupleDColumn(2,3, rho/mm);
+        analysisManager->FillNtupleDColumn(2,4, phi/deg);
+        analysisManager->FillNtupleDColumn(2,5, u/mm);
+        analysisManager->FillNtupleDColumn(2,6, E/keV);
+
+        analysisManager->AddNtupleRow(2);
+        track->SetTrackStatus(fStopAndKill);
+    }
 
 
-    // }
+
 
 }
 

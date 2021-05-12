@@ -28,15 +28,39 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
      G4Random::showEngineStatus();
 
      // Create analysis manager
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  analysisManager->SetNtupleMerging(true);
-  analysisManager->SetFileName("Geiger");
-     
-  analysisManager->CreateNtuple("Geiger","Results");
-  analysisManager->CreateNtupleDColumn("x");
-  analysisManager->CreateNtupleDColumn("y");
-  analysisManager->CreateNtupleDColumn("z");
-  analysisManager->FinishNtuple(0);
+    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+    analysisManager->SetNtupleMerging(true);
+    analysisManager->SetFileName("Geiger");
+        
+    analysisManager->CreateNtuple("Cathode","Cathode");
+    analysisManager->CreateNtupleDColumn("x");
+    analysisManager->CreateNtupleDColumn("y");
+    analysisManager->CreateNtupleDColumn("z");
+    analysisManager->CreateNtupleDColumn("rho");
+    analysisManager->CreateNtupleDColumn("phi"); 
+    analysisManager->CreateNtupleDColumn("u"); 
+    analysisManager->CreateNtupleDColumn("E");
+    analysisManager->FinishNtuple(0);
+
+    analysisManager->CreateNtuple("Anode","Anode");
+    analysisManager->CreateNtupleDColumn("x");
+    analysisManager->CreateNtupleDColumn("y");
+    analysisManager->CreateNtupleDColumn("z");
+    analysisManager->CreateNtupleDColumn("rho");
+    analysisManager->CreateNtupleDColumn("phi");
+    analysisManager->CreateNtupleDColumn("u");  
+    analysisManager->CreateNtupleDColumn("E");
+    analysisManager->FinishNtuple(1);
+
+    analysisManager->CreateNtuple("Gas","Gas");
+    analysisManager->CreateNtupleDColumn("x");
+    analysisManager->CreateNtupleDColumn("y");
+    analysisManager->CreateNtupleDColumn("z");
+    analysisManager->CreateNtupleDColumn("rho");
+    analysisManager->CreateNtupleDColumn("phi"); 
+    analysisManager->CreateNtupleDColumn("u"); 
+    analysisManager->CreateNtupleDColumn("E");
+    analysisManager->FinishNtuple(2);
 }
 
 
