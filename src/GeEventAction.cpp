@@ -17,9 +17,14 @@ GeEventAction::GeEventAction() : G4UserEventAction(){}
 
 
 void GeEventAction::BeginOfEventAction( const G4Event*)
-{ 
-    G4cout << "\n---> Begin of Event: " << G4RunManager::GetRunManager()->
-    GetCurrentEvent()->GetEventID() << G4endl;
+{ 	
+	G4int evtID = G4RunManager::GetRunManager()->
+    GetCurrentEvent()->GetEventID();
+
+	if (evtID % 100 == 0)
+	{
+		G4cout << "\n---> Begin of Event: " << evtID << G4endl;
+	}
 }
 
 
