@@ -1,4 +1,4 @@
-/analysis/setFileName geiger10M.root
+/analysis/setFileName geigerCs137.root
 #
 /control/verbose 0
 /run/verbose 0
@@ -6,10 +6,16 @@
 /tracking/verbose 0
 # 
 #
-/gun/particle gamma
-/gun/energy 661.7 keV
-/gun/direction 0 -1 0
-/gun/position 0 30 0 cm
-#
-/run/beamOn 10000000
+#/gps/particle gamma
+#/gps/energy 661.7 keV
+#/gps/direction 0 -1 0
+#/gps/position 0 5 0 cm
 
+/gps/particle ion
+#/gps/ion 27 60 # Co-60
+/gps/ion 55 137 # Cs-137
+/gps/energy 0 keV
+/gps/position 0 5 0 cm
+
+#
+/run/beamOn 1000000

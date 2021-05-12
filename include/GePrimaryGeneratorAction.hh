@@ -6,7 +6,7 @@
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 
-class G4ParticleGun;
+class G4GeneralParticleSource;
 class G4Event;
 
 class GePrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
@@ -16,10 +16,10 @@ class GePrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     virtual ~GePrimaryGeneratorAction();
     virtual void GeneratePrimaries(G4Event*);
 
-    const G4ParticleGun* GetParticleGun() const { return fParticleGun;}
+    const G4GeneralParticleSource* GetParticleGun() const { return fParticleGun;}
     
 
   private:
-    G4ParticleGun* fParticleGun;
+    G4GeneralParticleSource* fParticleGun;
 
 };
