@@ -55,8 +55,8 @@ G4VPhysicalVolume* GeDetectorConstruction::Construct()
    G4double worldSize = 20*cm;
    G4double detLength = 197.*mm;
    G4double detInnerRad = 11*mm;
-   G4double detWallThick = 1*mm;
-
+   G4double detWallThick = 0.0625*mm; // 50 mg/cm^2 from the web
+   G4double anodeDia = 0.5*mm;
 
    G4Box* worldSol = new G4Box("World", worldSize, worldSize, worldSize);
    G4LogicalVolume* worldLog = new G4LogicalVolume(worldSol, world_mat, "World");
@@ -93,7 +93,7 @@ G4VPhysicalVolume* GeDetectorConstruction::Construct()
                                                   0);
 
 
-   G4Tubs* anodeTubeSol = new G4Tubs("anodeTube", 0*mm, 1*mm, detLength/2., 0, 360*deg);
+   G4Tubs* anodeTubeSol = new G4Tubs("anodeTube", 0*mm, anodeDia/2., detLength/2., 0, 360*deg);
    G4LogicalVolume* anodeTubeLog = new G4LogicalVolume(anodeTubeSol, tube_mat, "anodeTube");
    G4VPhysicalVolume* anodeTubePhys = new G4PVPlacement(0,                 
                                                         G4ThreeVector(), 
